@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - SudishExpress</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/profile.css">
+    <link rel="stylesheet" href="/css/notifications.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <!-- Brand Logo -->
+            <div class="nav-brand">
+                <a href="home.html" class="logo-link">
+                    <i class="fas fa-train logo-icon"></i>
+                    <span class="brand-name">Sudish<span class="highlight">Express</span></span>
+                </a>
+            </div>
+            
+            <!-- Mobile Menu Toggle -->
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <!-- Navigation Menu -->
+            <div class="nav-menu">
+                <ul class="nav-links">
+                    <li class="nav-item">
+                        <a href="home.html" class="nav-link">
+                            <i class="fas fa-home"></i>
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="search.html" class="nav-link">
+                            <i class="fas fa-search"></i>
+                            <span>Search Trains</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="about.html" class="nav-link">
+                            <i class="fas fa-info-circle"></i>
+                            <span>About Us</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="contact.html" class="nav-link">
+                            <i class="fas fa-envelope"></i>
+                            <span>Contact</span>
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- Auth Buttons -->
+                <div class="auth-buttons">
+                    <a href="login.html" class="btn btn-login">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Login
+                    </a>
+                    <a href="signup.html" class="btn btn-signup">
+                        <i class="fas fa-user-plus"></i>
+                        Sign Up
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Profile Section -->
+    <main class="profile-section">
+        <div class="container">
+            <div class="profile-container">
+                <div class="profile-header">
+                    <div class="profile-avatar">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <h1>My Profile</h1>
+                </div>
+
+                <div class="profile-content">
+                    <div class="profile-info">
+                        <div class="info-group">
+                            <label>Full Name</label>
+                            <p id="userFullName">Loading...</p>
+                        </div>
+                        <div class="info-group">
+                            <label>Email Address</label>
+                            <p id="userEmail">Loading...</p>
+                        </div>
+                        <div class="info-group">
+                            <label>Phone Number</label>
+                            <p id="userPhone">Loading...</p>
+                        </div>
+                        <div class="info-group">
+                            <label>Member Since</label>
+                            <p id="memberSince">Loading...</p>
+                        </div>
+                    </div>
+
+                    <div class="profile-actions">
+                        <button class="btn btn-edit" onclick="editProfile()">
+                            <i class="fas fa-edit"></i>
+                            Edit Profile
+                        </button>
+                        <button class="btn btn-logout" onclick="logout()">
+                            <i class="fas fa-sign-out-alt"></i>
+                            Logout
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>SudishExpress</h3>
+                    <p>Your trusted partner for train travel</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/share/1YYYxNLDJT/?mibextid=wwXIfr"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/sudishkarki_10?igsh=MWNqYWgycHJqNW0xYQ=="><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="search.html">Search Trains</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Payment Options</h4>
+                    <ul>
+                        <li><a href="#">Credit Card</a></li>
+                        <li><a href="#">Debit Card</a></li>
+                        <li><a href="#">Net Banking</a></li>
+                        <li><a href="#">UPI</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <p><i class="fas fa-phone"></i> +9779820305703</p>
+                    <p><i class="fas fa-envelope"></i> sudishkarki360@gmail.com</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 SudishExpress. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+    <script src="/js/notifications.js"></script>
+    <script src="/js/auth.js"></script>
+    <script src="/js/header.js"></script>
+    <script src="/js/profile.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            HeaderManager.init();
+            loadUserProfile();
+        });
+    </script>
+</body>
+</html>

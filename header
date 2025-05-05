@@ -1,0 +1,58 @@
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <!-- Brand Logo -->
+            <div class="nav-brand">
+                <a href="index.html" class="logo-link">
+                    <i class="fas fa-train logo-icon"></i>
+                    <span class="brand-name">Sudish<span class="highlight">Express</span></span>
+                </a>
+            </div>
+            
+            <!-- Mobile Menu Toggle -->
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+    
+            <!-- Navigation Menu -->
+            <div class="nav-menu">
+                <ul class="nav-links">
+                    <li class="nav-item">
+                        <a href="home.html" class="nav-link">
+                            <i class="fas fa-home"></i>
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="search.html" class="nav-link">
+                            <i class="fas fa-search"></i>
+                            <span>Search Trains</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="about.html" class="nav-link">
+                            <i class="fas fa-info-circle"></i>
+                            <span>About Us</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="contact.html" class="nav-link">
+                            <i class="fas fa-envelope"></i>
+                            <span>Contact</span>
+                        </a>
+                    </li>
+                </ul>
+    
+                <!-- Auth Buttons -->
+                <div class="auth-buttons">
+                    <a href="login.html" class="btn btn-login">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Login
+                    </a>
+                    <a href="signup.html" class="btn btn-signup">
+                        <i class="fas fa-user-plus"></i>
+                        Sign Up
+                    </a>
+                </div>
+            </div>
+        </nav>

@@ -1,0 +1,88 @@
+{% extends 'reservation/base.html' %}
+{% load static %}
+
+{% block content %}
+<main class="search-page">
+    <div class="hero-section">
+        <!-- Video Background -->
+        <div class="hero-background">
+            <video autoplay muted loop id="heroVideo" class="hero-video">
+                <source src="{% static 'videos/Video3.mp4' %}" type="video/mp4">
+                <!-- Fallback background will be shown if video doesn't load -->
+            </video>
+            <div class="hero-overlay"></div>
+        </div>
+        <h1>Fast, reliable, and comfortable train travel across the country</h1>
+    </div>
+
+    <div class="search-container">
+        <div class="search-form">
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label><i class="fas fa-map-marker-alt"></i> From</label>
+                    {{ form.from_station }}
+                </div>
+
+                <div class="form-group">
+                    <label><i class="fas fa-map-marker"></i> To</label>
+                    {{ form.to_station }}
+                </div>
+
+                <div class="form-group">
+                    <label><i class="far fa-calendar"></i> Date</label>
+                    {{ form.date }}
+                </div>
+
+                <div class="form-group">
+                    <label><i class="fas fa-users"></i> Passengers</label>
+                    {{ form.passengers }}
+                </div>
+
+                <button type="submit" class="search-btn">Search Trains</button>
+            </form>
+        </div>
+    </div>
+
+    <section class="popular-routes">
+        <h2>Popular Routes</h2>
+        <div class="route-grid">
+            <div class="route-card">
+                <img src="{% static 'images/janakpur-train.jpg' %}" alt="Janakpur Railway">
+                <div class="route-content">
+                    <h3>Janakpur - Jayanagar</h3>
+                    <div class="route-info">
+                        <span class="time"><i class="far fa-clock"></i> 1h 30m</span>
+                        <span class="price">From NPR 100</span>
+                    </div>
+                    <p>Experience the historic Janakpur-Jayanagar railway line</p>
+                </div>
+            </div>
+
+            <div class="route-card">
+                <img src="{% static 'images/kurtha-train.jpg' %}" alt="Kurtha Railway">
+                <div class="route-content">
+                    <h3>Kurtha - Bijalpura</h3>
+                    <div class="route-info">
+                        <span class="time"><i class="far fa-clock"></i> 45m</span>
+                        <span class="price">From NPR 80</span>
+                    </div>
+                    <p>Modern railway connection in Province 2</p>
+                </div>
+            </div>
+
+            <div class="route-card">
+                <img src="{% static 'images/bardibas-train.jpg' %}" alt="Bardibas Railway">
+                <div class="route-content">
+                    <h3>Bardibas - Simara</h3>
+                    <div class="route-info">
+                        <span class="time"><i class="far fa-clock"></i> 2h</span>
+                        <span class="price">From NPR 150</span>
+                    </div>
+                    <p>Scenic route through the Terai region</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %} 

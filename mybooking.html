@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Bookings - SudishExpress</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/booking.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <i class="fas fa-train"></i>
+                    <span>SudishExpress</span>
+                </a>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="search.html">Search Trains</a></li>
+                    <li><a href="mybooking.html" class="active">My Bookings</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="user-actions">
+                <div id="userSection"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- My Bookings Section -->
+    <section class="my-bookings">
+        <div class="container">
+            <h1>My Bookings</h1>
+            <div class="booking-filters">
+                <button class="filter-btn active" data-filter="all">All Bookings</button>
+                <button class="filter-btn" data-filter="upcoming">Upcoming</button>
+                <button class="filter-btn" data-filter="completed">Completed</button>
+                <button class="filter-btn" data-filter="cancelled">Cancelled</button>
+            </div>
+            <div id="bookingsList" class="bookings-list">
+                <!-- Bookings will be loaded here dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 SudishExpress. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if user is logged in
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            if (!currentUser) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            // Update user section
+            const userSection = document.getElementById('userSection');
+            userSection.innerHTML = `
+                <span class="user-name">Welcome, ${currentUser.name}</span>
+                <button onclick="logout()" class="btn-logout">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            `;
+
+            // Load user's bookings
+            loadUserBookings();
+
+            // Add event listeners to filter buttons
+            document.querySelectorAll('.filter-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    filterBookings(this.dataset.filter);
+                });
+            });
+        });
+
+        function loadUserBookings() {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            const userBookings = JSON.parse(localStorage.getItem(`bookings_${currentUser.id}`)) || [];
+            const bookingsList = document.getElementById('bookingsList');
+
+            if (userBookings.length === 0) {
+                bookingsList.innerHTML = `
+                    <div class="no-bookings">
+                        <i class="fas fa-ticket-alt"></i>
+                        <p>You haven't made any bookings yet.</p>
+                        <a href="search.html" class="btn-primary">Search Trains</a>
+                    </div>
+                `;
+                return;
+            }
+
+            displayBookings(userBookings);
+        }
+
+        function displayBookings(bookings) {
+            const bookingsList = document.getElementById('bookingsList');
+            bookingsList.innerHTML = '';
+
+            bookings.sort((a, b) => new Date(b.bookingDate) - new Date(a.bookingDate));
+
+            bookings.forEach(booking => {
+                const bookingStatus = getBookingStatus(booking.travelDate);
+                const statusClass = getStatusClass(bookingStatus);
+
+                const bookingCard = document.createElement('div');
+                bookingCard.className = `booking-card ${statusClass}`;
+                bookingCard.innerHTML = `
+                    <div class="booking-header">
+                        <div class="booking-id">
+                            <span>Booking ID:</span>
+                            <strong>${booking.id}</strong>
+                        </div>
+                        <div class="booking-status ${statusClass}">
+                            ${bookingStatus}
+                        </div>
+                    </div>
+                    <div class="booking-details">
+                        <div class="train-info">
+                            <h3>${booking.trainName}</h3>
+                            <p class="train-number">${booking.trainNumber}</p>
+                        </div>
+                        <div class="journey-details">
+                            <div class="station">
+                                <p class="time">${booking.departure}</p>
+                                <p class="name">${capitalizeFirst(booking.from)}</p>
+                            </div>
+                            <div class="journey-line">
+                                <i class="fas fa-long-arrow-alt-right"></i>
+                            </div>
+                            <div class="station">
+                                <p class="time">${booking.arrival}</p>
+                                <p class="name">${capitalizeFirst(booking.to)}</p>
+                            </div>
+                        </div>
+                        <div class="ticket-info">
+                            <p><strong>Travel Date:</strong> ${new Date(booking.travelDate).toLocaleDateString()}</p>
+                            <p><strong>Tickets:</strong> ${booking.tickets}</p>
+                            <p><strong>Total Amount:</strong> NPR ${booking.totalAmount}</p>
+                        </div>
+                    </div>
+                    <div class="booking-actions">
+                        <button onclick="viewTicketDetails('${booking.id}')" class="btn-secondary">
+                            <i class="fas fa-ticket-alt"></i> View Ticket
+                        </button>
+                        ${bookingStatus === 'Upcoming' ? `
+                            <button onclick="cancelBooking('${booking.id}')" class="btn-danger">
+                                <i class="fas fa-times"></i> Cancel Booking
+                            </button>
+                        ` : ''}
+                    </div>
+                `;
+                bookingsList.appendChild(bookingCard);
+            });
+        }
+
+        function filterBookings(filter) {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            let userBookings = JSON.parse(localStorage.getItem(`bookings_${currentUser.id}`)) || [];
+
+            if (filter !== 'all') {
+                userBookings = userBookings.filter(booking => {
+                    const status = getBookingStatus(booking.travelDate);
+                    return status.toLowerCase() === filter;
+                });
+            }
+
+            displayBookings(userBookings);
+        }
+
+        function getBookingStatus(travelDate) {
+            const today = new Date();
+            const travel = new Date(travelDate);
+            
+            if (travel < today) return 'Completed';
+            if (travel > today) return 'Upcoming';
+            return 'Active';
+        }
+
+        function getStatusClass(status) {
+            switch (status.toLowerCase()) {
+                case 'completed': return 'status-completed';
+                case 'upcoming': return 'status-upcoming';
+                case 'cancelled': return 'status-cancelled';
+                default: return 'status-active';
+            }
+        }
+
+        function viewTicketDetails(bookingId) {
+            window.location.href = `booked.html?id=${bookingId}`;
+        }
+
+        function cancelBooking(bookingId) {
+            if (!confirm('Are you sure you want to cancel this booking?')) return;
+
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            let userBookings = JSON.parse(localStorage.getItem(`bookings_${currentUser.id}`)) || [];
+            let allBookings = JSON.parse(localStorage.getItem('bookings')) || [];
+
+            // Update booking status in user's bookings
+            const bookingIndex = userBookings.findIndex(b => b.id === bookingId);
+            if (bookingIndex !== -1) {
+                userBookings[bookingIndex].status = 'cancelled';
+                localStorage.setItem(`bookings_${currentUser.id}`, JSON.stringify(userBookings));
+            }
+
+            // Update booking status in all bookings
+            const allBookingIndex = allBookings.findIndex(b => b.id === bookingId);
+            if (allBookingIndex !== -1) {
+                allBookings[allBookingIndex].status = 'cancelled';
+                localStorage.setItem('bookings', JSON.stringify(allBookings));
+            }
+
+            // Refresh the display
+            loadUserBookings();
+        }
+
+        function capitalizeFirst(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        }
+
+        function logout() {
+            localStorage.removeItem('currentUser');
+            window.location.href = 'login.html';
+        }
+    </script>
+</body>
+</html> 

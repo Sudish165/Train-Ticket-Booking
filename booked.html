@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket Details - SudishExpress</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/booking.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <i class="fas fa-train"></i>
+                    <span>SudishExpress</span>
+                </a>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="search.html">Search Trains</a></li>
+                    <li><a href="mybooking.html">My Bookings</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="user-actions">
+                <div id="userSection"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Ticket Details Section -->
+    <section class="ticket-details">
+        <div class="container">
+            <div class="back-button">
+                <a href="mybooking.html" class="btn-back">
+                    <i class="fas fa-arrow-left"></i> Back to My Bookings
+                </a>
+            </div>
+            <div class="ticket-container">
+                <div class="ticket-header">
+                    <h1>E-Ticket</h1>
+                    <div class="booking-status"></div>
+                </div>
+                <div class="ticket-content">
+                    <!-- Ticket content will be loaded dynamically -->
+                </div>
+                <div class="ticket-actions">
+                    <button onclick="printTicket()" class="btn-primary">
+                        <i class="fas fa-print"></i> Print Ticket
+                    </button>
+                    <button onclick="downloadTicket()" class="btn-secondary">
+                        <i class="fas fa-download"></i> Download PDF
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 SudishExpress. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if user is logged in
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            if (!currentUser) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            // Update user section
+            const userSection = document.getElementById('userSection');
+            userSection.innerHTML = `
+                <span class="user-name">Welcome, ${currentUser.name}</span>
+                <button onclick="logout()" class="btn-logout">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            `;
+
+            // Get booking ID from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const bookingId = urlParams.get('id');
+
+            if (!bookingId) {
+                window.location.href = 'mybooking.html';
+                return;
+            }
+
+            // Load ticket details
+            loadTicketDetails(bookingId);
+        });
+
+        function loadTicketDetails(bookingId) {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            const userBookings = JSON.parse(localStorage.getItem(`bookings_${currentUser.id}`)) || [];
+            const booking = userBookings.find(b => b.id === bookingId);
+
+            if (!booking) {
+                window.location.href = 'mybooking.html';
+                return;
+            }
+
+            // Update booking status
+            const status = getBookingStatus(booking.travelDate);
+            const statusClass = getStatusClass(status);
+            document.querySelector('.booking-status').innerHTML = `
+                <span class="${statusClass}">${status}</span>
+            `;
+
+            // Update ticket content
+            const ticketContent = document.querySelector('.ticket-content');
+            ticketContent.innerHTML = `
+                <div class="ticket-section">
+                    <h2>Booking Information</h2>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <label>Booking ID</label>
+                            <span>${booking.id}</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Booking Date</label>
+                            <span>${new Date(booking.bookingDate).toLocaleDateString()}</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Payment Method</label>
+                            <span>${capitalizeFirst(booking.paymentMethod)}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ticket-section">
+                    <h2>Journey Details</h2>
+                    <div class="journey-card">
+                        <div class="train-info">
+                            <h3>${booking.trainName}</h3>
+                            <p class="train-number">${booking.trainNumber}</p>
+                        </div>
+                        <div class="journey-details">
+                            <div class="station">
+                                <p class="time">${booking.departure}</p>
+                                <p class="name">${capitalizeFirst(booking.from)}</p>
+                            </div>
+                            <div class="journey-line">
+                                <i class="fas fa-long-arrow-alt-right"></i>
+                            </div>
+                            <div class="station">
+                                <p class="time">${booking.arrival}</p>
+                                <p class="name">${capitalizeFirst(booking.to)}</p>
+                            </div>
+                        </div>
+                        <div class="travel-date">
+                            <i class="far fa-calendar-alt"></i>
+                            <span>${new Date(booking.travelDate).toLocaleDateString('en-US', {
+                                weekday: 'long',
+                                year: 'numeric',
+                                month: 'long',
+                                day: 'numeric'
+                            })}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ticket-section">
+                    <h2>Fare Details</h2>
+                    <div class="fare-details">
+                        <div class="fare-item">
+                            <span>Number of Tickets</span>
+                            <span>${booking.tickets}</span>
+                        </div>
+                        <div class="fare-item">
+                            <span>Price per Ticket</span>
+                            <span>NPR ${booking.pricePerTicket}</span>
+                        </div>
+                        <div class="fare-item total">
+                            <span>Total Amount</span>
+                            <span>NPR ${booking.totalAmount}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ticket-section">
+                    <h2>Important Information</h2>
+                    <ul class="info-list">
+                        <li>Please arrive at the station at least 30 minutes before departure.</li>
+                        <li>Carry a valid ID proof along with this ticket.</li>
+                        <li>This is an electronic ticket, no physical ticket is required.</li>
+                        <li>In case of any issues, please contact our customer support.</li>
+                    </ul>
+                </div>
+            `;
+        }
+
+        function getBookingStatus(travelDate) {
+            const today = new Date();
+            const travel = new Date(travelDate);
+            
+            if (travel < today) return 'Completed';
+            if (travel > today) return 'Upcoming';
+            return 'Active';
+        }
+
+        function getStatusClass(status) {
+            switch (status.toLowerCase()) {
+                case 'completed': return 'status-completed';
+                case 'upcoming': return 'status-upcoming';
+                case 'cancelled': return 'status-cancelled';
+                default: return 'status-active';
+            }
+        }
+
+        function capitalizeFirst(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        }
+
+        function printTicket() {
+            window.print();
+        }
+
+        function downloadTicket() {
+            // This is a placeholder for PDF download functionality
+            alert('PDF download functionality will be implemented soon.');
+        }
+
+        function logout() {
+            localStorage.removeItem('currentUser');
+            window.location.href = 'login.html';
+        }
+    </script>
+</body>
+</html> 

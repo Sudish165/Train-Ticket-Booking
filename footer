@@ -1,0 +1,46 @@
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>SudishExpress</h3>
+                <p>Your trusted partner for train travel</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="search.html">Search Trains</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="faq.html">FAQs</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>Payment Options</h4>
+                <ul>
+                    <li><a href="#">Credit Card</a></li>
+                    <li><a href="#">Debit Card</a></li>
+                    <li><a href="#">Net Banking</a></li>
+                    <li><a href="#">UPI</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-contact">
+                <h4>Contact Us</h4>
+                <p><i class="fas fa-phone"></i> +9779820305703</p>
+                <p><i class="fas fa-envelope"></i> sudishkarki360@gmail.com</p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 SudishExpress. All rights reserved.</p>
+        </div>
+    </div>
+</footer>

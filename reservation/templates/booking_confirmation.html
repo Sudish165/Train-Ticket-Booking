@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block title %}Booking Confirmation{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-body p-5">
+                    <div class="text-center mb-4">
+                        <div class="bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                            <i class="bi bi-check-lg" style="font-size: 2.5rem;"></i>
+                        </div>
+                        <h2>Booking Confirmed!</h2>
+                        <p class="text-muted">Your train ticket has been booked successfully.</p>
+                    </div>
+                    
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <p class="text-muted mb-1">Booking Reference</p>
+                            <p class="fw-bold">{{ booking.id }}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="text-muted mb-1">Booking Date</p>
+                            <p class="fw-bold">{{ booking.booking_time|date:"F d, Y" }}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card bg-light mb-4">
+                        <div class="card-body p-4">
+                            <h5 class="card-title mb-3">
+                                <i class="bi bi-train-front me-2"></i>Journey Details
+                            </h5>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p class="text-muted mb-1">From</p>
+                                    <p class="fw-bold mb-0">{{ booking.train.source.name }}</p>
+                                    <p class="text-primary">{{ booking.train.departure_time }}</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p class="text-muted mb-1">To</p>
+                                    <p class="fw-bold mb-0">{{ booking.train.destination.name }}</p>
+                                    <p class="text-primary">{{ booking.train.arrival_time }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <p class="text-muted mb-1">Train Details</p>
+                            <p class="fw-bold mb-0">{{ booking.train.name }}</p>
+                            <p class="text-muted">Train No: {{ booking.train.train_number }}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="text-muted mb-1">Passenger Details</p>
+                            <p class="fw-bold mb-0">{{ booking.num_passengers }} Passenger(s)</p>
+                            <p class="text-muted">Total Amount: ₹{{ booking.total_price }}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex justify-content-center gap-3">
+                        <a href="{% url 'my_bookings' %}" class="btn btn-outline-primary">View All Bookings</a>
+                        <a href="{% url 'home' %}" class="btn btn-primary">Book Another Ticket</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,79 @@
+<!-- templates/contact.html -->
+{% extends 'base.html' %}
+
+{% block title %}Contact Us{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <h2 class="mb-4">Contact Us</h2>
+    
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Send us a message</h5>
+                    <form>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Your Name</label>
+                            <input type="text" class="form-control" id="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="email" class="form-control" id="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="subject" class="form-label">Subject</label>
+                            <input type="text" class="form-control" id="subject" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea class="form-control" id="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Contact Information</h5>
+                    <p>
+                        <strong>Address:</strong><br>
+                        123 Railway Street<br>
+                        Metro City, MC 12345
+                    </p>
+                    <p>
+                        <strong>Email:</strong><br>
+                        info@SudishExpress.com<br>
+                        support@SudishExpress.com
+                    </p>
+                    <p>
+                        <strong>Phone:</strong><br>
+                        +1 (555) 123-4567 (General Inquiries)<br>
+                        +1 (555) 987-6543 (Customer Support)
+                    </p>
+                    <p>
+                        <strong>Hours of Operation:</strong><br>
+                        Monday - Friday: 9:00 AM - 6:00 PM<br>
+                        Saturday: 10:00 AM - 4:00 PM<br>
+                        Sunday: Closed
+                    </p>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Follow Us</h5>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="btn btn-outline-primary">Facebook</a>
+                        <a href="#" class="btn btn-outline-info">Twitter</a>
+                        <a href="#" class="btn btn-outline-danger">Instagram</a>
+                        <a href="#" class="btn btn-outline-dark">LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

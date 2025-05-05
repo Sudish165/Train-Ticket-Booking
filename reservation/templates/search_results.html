@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block title %}Search Results{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <h2 class="mb-4">Available Trains</h2>
+    
+    <div class="card mb-4">
+        <div class="card-body">
+            <div class="row align-items-center">
+                <div class="col-md-3">
+                    <p class="mb-0"><strong>From:</strong> {{ from_station }}</p>
+                </div>
+                <div class="col-md-3">
+                    <p class="mb-0"><strong>To:</strong> {{ to_station }}</p>
+                </div>
+                <div class="col-md-3">
+                    <p class="mb-0"><strong>Date:</strong> {{ date }}</p>
+                </div>
+                <div class="col-md-3">
+                    <p class="mb-0"><strong>Passengers:</strong> {{ passengers }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    {% if trains %}
+        <div class="row">
+            {% for train in trains %}
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-header bg-primary text-white">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h5 class="mb-0">{{ train.name }}</h5>
+                                <span class="badge bg-light text-dark">{{ train.train_number }}</span>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row mb-3">
+                                <div class="col-6">
+                                    <p class="text-muted mb-1">Departure</p>
+                                    <p class="fw-bold mb-0">{{ train.source.name }}</p>
+                                    <p class="text-primary">{{ train.departure_time }}</p>
+                                </div>
+                                <div class="col-6">
+                                    <p class="text-muted mb-1">Arrival</p>
+                                    <p class="fw-bold mb-0">{{ train.destination.name }}</p>
+                                    <p class="text-primary">{{ train.arrival_time }}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <p class="text-muted mb-1">Available Seats</p>
+                                    <p class="fw-bold">{{ train.available_seats }}</p>
+                                </div>
+                                <div class="col-6">
+                                    <p class="text-muted mb-1">Price</p>
+                                    <p class="fw-bold">₹{{ train.price }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-light">
+                            <form method="post" action="{% url 'book_ticket' %}">
+                                {% csrf_token %}
+                                <input type="hidden" name="train_id" value="{{ train.id }}">
+                                <input type="hidden" name="date" value="{{ date }}">
+                                <input type="hidden" name="passengers" value="{{ passengers }}">
+                                <button type="submit" class="btn btn-primary w-100">Book Now</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-info">
+            <p>No trains found for your search criteria. Please try different dates or stations.</p>
+            <a href="{% url 'search_trains' %}" class="btn btn-primary mt-2">New Search</a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

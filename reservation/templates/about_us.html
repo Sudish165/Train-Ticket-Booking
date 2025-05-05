@@ -1,0 +1,46 @@
+<!-- templates/about_us.html -->
+{% extends 'base.html' %}
+
+{% block title %}About Us{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <h2 class="mb-4">About SudishExpress</h2>
+    
+    <div class="row">
+        <div class="col-md-8">
+            <p class="lead">SudishExpress is a modern train reservation system designed to make your travel planning easy and convenient.</p>
+            
+            <p>Founded in 2023, SudishExpress aims to revolutionize the way people book train tickets. Our platform provides a seamless booking experience with real-time availability, secure payments, and instant confirmations.</p>
+            
+            <p>Our mission is to make train travel accessible, affordable, and hassle-free for everyone. We're committed to providing excellent customer service and continuously improving our platform based on user feedback.</p>
+            
+            <h4 class="mt-4">Our Features</h4>
+            <ul>
+                <li>Easy and intuitive booking process</li>
+                <li>Real-time train availability</li>
+                <li>Secure payment options</li>
+                <li>Instant booking confirmations</li>
+                <li>Manage and view your bookings anytime</li>
+                <li>24/7 customer support</li>
+            </ul>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Contact Information</h5>
+                    <p class="card-text">
+                        <strong>Address:</strong><br>
+                        123 Railway Street<br>
+                        Metro City, MC 12345<br><br>
+                        <strong>Email:</strong><br>
+                        info@SudishExpress.com<br><br>
+                        <strong>Phone:</strong><br>
+                        +1 (555) 123-4567
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

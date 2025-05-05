@@ -1,0 +1,264 @@
+{% extends 'reservation/base.html' %}
+{% load static %}
+
+{% block content %}
+<main>
+    <section class="hero">
+        <!-- Video Background -->
+        <div class="hero-background">
+            <video autoplay muted loop id="heroVideo" class="hero-video">
+                <source src="{% static 'videos/Video2.mp4' %}" type="video/mp4">
+                <!-- Fallback background will be shown if video doesn't load -->
+            </video>
+            <div class="hero-overlay"></div>
+        </div>
+        
+        <div class="container">
+            <div class="hero-content">
+                <h2 class="fade-in">About SudishExpress</h2>
+                <p class="fade-in">Your trusted partner for seamless train travel experiences since 2010.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="company-overview">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Story</h2>
+                <div class="divider"></div>
+            </div>
+            <div class="two-column">
+                <div class="column-content fade-in">
+                    <p>Founded in 2010, SudishExpress began with a simple vision: to revolutionize train ticket booking by making it accessible, efficient, and hassle-free for travelers across the country.</p>
+                    <p>What started as a small startup with just five employees has now grown into a leading train ticket booking platform serving millions of passengers annually. Our journey has been defined by continuous innovation, customer-centric approaches, and a commitment to excellence.</p>
+                    <p>Today, SudishExpress is proud to partner with national and regional railway networks, offering comprehensive booking solutions for all your train travel needs.</p>
+                </div>
+                <div class="column-image fade-in">
+                    <img src="{% static 'images/about/modern-train.jpg' %}" alt="Modern train station with passengers" class="rounded-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="mission-vision">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Mission & Vision</h2>
+                <div class="divider"></div>
+            </div>
+            <div class="mission-cards">
+                <div class="card slide-in-left">
+                    <div class="card-icon">
+                        <i class="fas fa-bullseye fa-3x" style="color: var(--primary-color)"></i>
+                    </div>
+                    <h3>Our Mission</h3>
+                    <p>To provide a seamless, reliable, and user-friendly train ticket booking experience that empowers travelers to journey with confidence and convenience.</p>
+                </div>
+                <div class="card slide-in-right">
+                    <div class="card-icon">
+                        <i class="fas fa-eye fa-3x" style="color: var(--primary-color)"></i>
+                    </div>
+                    <h3>Our Vision</h3>
+                    <p>To become the world's most trusted platform for train travel, connecting people to destinations through innovative technology and exceptional service.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Services</h2>
+                <div class="divider"></div>
+                <p class="section-intro">Discover the comprehensive range of services we offer to make your train journey smooth and enjoyable.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-ticket-alt fa-2x" style="color: var(--primary-color)"></i>
+                    </div>
+                    <h3>Ticket Booking</h3>
+                    <p>Book train tickets quickly and securely with our intuitive platform. Choose from various seat classes and enjoy instant confirmation.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-map-marker-alt fa-2x" style="color: var(--primary-color)"></i>
+                    </div>
+                    <h3>Real-time Tracking</h3>
+                    <p>Track your train's location in real-time and receive timely updates about delays, platform changes, and estimated arrival times.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-couch fa-2x" style="color: var(--primary-color)"></i>
+                    </div>
+                    <h3>Seat Selection</h3>
+                    <p>Choose your preferred seats with our interactive seat map. View available options and select the perfect spot for your journey.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-utensils fa-2x" style="color: var(--primary-color)"></i>
+                    </div>
+                    <h3>Meal Pre-ordering</h3>
+                    <p>Pre-order meals for your journey from a variety of cuisines. Special dietary requirements can be accommodated with advance notice.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-gift fa-2x" style="color: var(--primary-color)"></i>
+                    </div>
+                    <h3>Loyalty Program</h3>
+                    <p>Earn points with every booking and redeem them for discounts, upgrades, and exclusive offers through our SudishRewards program.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-headset fa-2x" style="color: var(--primary-color)"></i>
+                    </div>
+                    <h3>24/7 Support</h3>
+                    <p>Our customer service team is available round-the-clock to assist with bookings, changes, cancellations, and any other queries.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="achievements">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Achievements</h2>
+                <div class="divider"></div>
+            </div>
+            <div class="stats-container">
+                <div class="stat-item count-up">
+                    <div class="stat-number" data-count="15">0</div>
+                    <div class="stat-label">Years of Service</div>
+                </div>
+                <div class="stat-item count-up">
+                    <div class="stat-number" data-count="5">0</div>
+                    <div class="stat-label">Million+ Users</div>
+                </div>
+                <div class="stat-item count-up">
+                    <div class="stat-number" data-count="500">0</div>
+                    <div class="stat-label">Cities Connected</div>
+                </div>
+                <div class="stat-item count-up">
+                    <div class="stat-number" data-count="98">0</div>
+                    <div class="stat-label">Customer Satisfaction</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="team">
+        <div class="container">
+            <div class="section-header">
+                <h2>Leadership Team</h2>
+                <div class="divider"></div>
+            </div>
+            <div class="team-slider">
+                <div class="team-container">
+                    <div class="team-member">
+                        <div class="member-image">
+                            <img src="{% static 'images/team/ceo.jpg' %}" alt="CEO portrait">
+                        </div>
+                        <div class="member-info">
+                            <h3>Sudish Karki</h3>
+                            <p class="member-title">Founder & CEO</p>
+                            <p class="member-bio">With a passion for innovation and technology, Sudish founded SudishExpress to revolutionize train travel in Nepal. His visionary leadership has transformed the way people book and experience train journeys.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2>What Our Customers Say</h2>
+                <div class="divider"></div>
+            </div>
+            <div class="testimonial-slider">
+                <div class="testimonial-container">
+                    <div class="testimonial">
+                        <div class="quote">"SudishExpress has made my travel experience so much better! The booking process is quick and easy, and I love how I can track my train in real-time. The customer service is exceptional too!"</div>
+                        <div class="testimonial-author">
+                            <img src="{% static 'images/testimonials/user1.jpg' %}" alt="Customer portrait" class="author-image">
+                            <div class="author-info">
+                                <h4>Rejina Dangal</h4>
+                                <p>Regular Commuter</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Experience Hassle-free Train Travel?</h2>
+                <p>Join millions of satisfied travelers who book with SudishExpress.</p>
+                <div class="cta-buttons">
+                    <a href="{% url 'search_trains' %}" class="btn btn-primary">Book Now</a>
+                    <a href="{% url 'contact' %}" class="btn btn-secondary">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Animation for elements when they come into view
+        const animateOnScroll = function() {
+            const elements = document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right');
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+        };
+
+        // Counter animation for stats
+        const animateCounter = function(element) {
+            const target = parseInt(element.getAttribute('data-count'));
+            const duration = 2000;
+            const step = target / (duration / 16);
+            let current = 0;
+
+            const timer = setInterval(() => {
+                current += step;
+                if (current >= target) {
+                    element.textContent = target;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current);
+                }
+            }, 16);
+        };
+
+        // Start counter animation when stats section comes into view
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    document.querySelectorAll('.stat-number').forEach(counter => {
+                        animateCounter(counter);
+                    });
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        });
+
+        document.querySelector('.stats-container').forEach(element => {
+            statsObserver.observe(element);
+        });
+
+        window.addEventListener('scroll', animateOnScroll);
+        animateOnScroll(); // Initial check for elements in view
+    });
+</script>
+{% endblock %} 

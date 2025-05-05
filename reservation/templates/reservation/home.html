@@ -1,0 +1,122 @@
+{% extends 'reservation/base.html' %}
+{% load static %}
+
+{% block title %}SudishExpress - Modern Train Booking{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero">
+    <!-- Video Background -->
+    <div class="hero-background">
+        <video autoplay muted loop id="heroVideo" class="hero-video">
+            <source src="{% static 'videos/Video1.mp4' %}" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+    </div>
+    
+    <div class="container">
+        <div class="hero-content">
+            <h1>Book Your Journey With Confidence</h1>
+            <p>Fast, reliable, and comfortable train travel across the country</p>
+            
+            <!-- Booking Form -->
+            <div class="booking-card">
+                <form class="booking-form" method="post" action="{% url 'search_trains' %}">
+                    {% csrf_token %}
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label><i class="fas fa-map-marker-alt"></i> From</label>
+                            <select name="from_station" required>
+                                <option value="">Select Station</option>
+                                {% for station in stations %}
+                                    <option value="{{ station.id }}">{{ station.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-map-marker"></i> To</label>
+                            <select name="to_station" required>
+                                <option value="">Select Station</option>
+                                {% for station in stations %}
+                                    <option value="{{ station.id }}">{{ station.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label><i class="fas fa-calendar"></i> Date</label>
+                            <input type="date" name="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-users"></i> Passengers</label>
+                            <select name="passengers" required>
+                                <option value="1">1 Passenger</option>
+                                <option value="2">2 Passengers</option>
+                                <option value="3">3 Passengers</option>
+                                <option value="4">4 Passengers</option>
+                                <option value="5">5 Passengers</option>
+                                <option value="6">6 Passengers</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-search">Search Trains</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="features">
+    <div class="container">
+        <h2>Why Choose SudishExpress?</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <i class="fas fa-clock"></i>
+                <h3>Fast Booking</h3>
+                <p>Book your tickets in minutes with our streamlined process</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-shield-alt"></i>
+                <h3>Secure Payment</h3>
+                <p>Multiple secure payment options for your convenience</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-tag"></i>
+                <h3>Best Prices</h3>
+                <p>Competitive prices with regular discounts and offers</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Popular Routes Section -->
+<section class="popular-routes">
+    <div class="container">
+        <h2>Popular Routes</h2>
+        <div class="routes-grid">
+            {% for route in popular_routes %}
+            <div class="route-card">
+                <div class="route-image">
+                    <img src="{% static 'images/'|add:route.image %}" alt="{{ route.name }}">
+                </div>
+                <div class="route-info">
+                    <h3>{{ route.name }}</h3>
+                    <p>{{ route.description }}</p>
+                    <div class="route-details">
+                        <span><i class="fas fa-clock"></i> {{ route.duration }}</span>
+                        <span><i class="fas fa-money-bill"></i> Rs. {{ route.price }}</span>
+                    </div>
+                    <a href="{% url 'search_trains' %}?from={{ route.from_station }}&to={{ route.to_station }}" class="btn btn-outline">Book Now</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/home.js' %}"></script>
+{% endblock %}

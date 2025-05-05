@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - SudishExpress</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <a href="home.html" class="logo-link">
+                    <i class="fas fa-train logo-icon"></i>
+                    <span class="brand-name">Sudish<span class="highlight">Express</span></span>
+                </a>
+            </div>
+            
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <div class="nav-menu">
+                <ul class="nav-links">
+                    <li class="nav-item">
+                        <a href="home.html" class="nav-link">
+                            <i class="fas fa-home"></i>
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="admin.html" class="nav-link active">
+                            <i class="fas fa-cog"></i>
+                            <span>Admin Panel</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="admin-panel">
+        <div class="container">
+            <h1 class="admin-title">Train Management System</h1>
+            
+            <!-- Add/Edit Train Form -->
+            <section class="train-form-section">
+                <h2>Add/Edit Train</h2>
+                <form id="trainForm" class="train-form">
+                    <input type="hidden" id="trainId">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="trainName">Train Name</label>
+                            <input type="text" id="trainName" required placeholder="Enter train name">
+                        </div>
+                        <div class="form-group">
+                            <label for="trainNumber">Train Number</label>
+                            <input type="text" id="trainNumber" required placeholder="Enter train number">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fromStation">From Station</label>
+                            <select id="fromStation" required>
+                                <option value="">Select Departure Station</option>
+                                <option value="kathmandu">Kathmandu</option>
+                                <option value="pokhara">Pokhara</option>
+                                <option value="birgunj">Birgunj</option>
+                                <option value="biratnagar">Biratnagar</option>
+                                <option value="janakpur">Janakpur</option>
+                                <option value="butwal">Butwal</option>
+                                <option value="bharatpur">Bharatpur</option>
+                                <option value="nepalgunj">Nepalgunj</option>
+                                <option value="dhangadhi">Dhangadhi</option>
+                                <option value="bhairahawa">Bhairahawa</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="toStation">To Station</label>
+                            <select id="toStation" required>
+                                <option value="">Select Destination Station</option>
+                                <option value="kathmandu">Kathmandu</option>
+                                <option value="pokhara">Pokhara</option>
+                                <option value="birgunj">Birgunj</option>
+                                <option value="biratnagar">Biratnagar</option>
+                                <option value="janakpur">Janakpur</option>
+                                <option value="butwal">Butwal</option>
+                                <option value="bharatpur">Bharatpur</option>
+                                <option value="nepalgunj">Nepalgunj</option>
+                                <option value="dhangadhi">Dhangadhi</option>
+                                <option value="bhairahawa">Bhairahawa</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="departureTime">Departure Time</label>
+                            <input type="time" id="departureTime" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="arrivalTime">Arrival Time</label>
+                            <input type="time" id="arrivalTime" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="totalSeats">Total Seats</label>
+                            <input type="number" id="totalSeats" required min="1" max="500" placeholder="Enter total seats">
+                        </div>
+                        <div class="form-group">
+                            <label for="ticketPrice">Ticket Price (NPR)</label>
+                            <input type="number" id="ticketPrice" required min="1" placeholder="Enter ticket price">
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary" id="saveTrainBtn">
+                            <i class="fas fa-save"></i> Save Train
+                        </button>
+                        <button type="button" class="btn btn-secondary" id="resetFormBtn">
+                            <i class="fas fa-undo"></i> Reset Form
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Train List Section -->
+            <section class="train-list-section">
+                <div class="list-header">
+                    <h2>Manage Trains</h2>
+                    <div class="search-box">
+                        <input type="text" id="searchTrains" placeholder="Search trains...">
+                        <i class="fas fa-search"></i>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="train-table">
+                        <thead>
+                            <tr>
+                                <th>Train Name</th>
+                                <th>Number</th>
+                                <th>Route</th>
+                                <th>Departure</th>
+                                <th>Arrival</th>
+                                <th>Seats</th>
+                                <th>Price</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="trainList">
+                            <!-- Train records will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Bookings Management Section -->
+            <section class="bookings-section">
+                <div class="list-header">
+                    <h2>Manage Bookings</h2>
+                    <div class="search-box">
+                        <input type="text" id="searchBookings" placeholder="Search bookings...">
+                        <i class="fas fa-search"></i>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="bookings-table">
+                        <thead>
+                            <tr>
+                                <th>Booking ID</th>
+                                <th>Train</th>
+                                <th>User</th>
+                                <th>Route</th>
+                                <th>Travel Date</th>
+                                <th>Passengers</th>
+                                <th>Total Price</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bookingsList">
+                            <!-- Bookings will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="js/admin.js"></script>
+</body>
+</html> 

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - SudishExpress</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/signup.css">
+    <link rel="stylesheet" href="/css/layout.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+     <!-- Header -->
+ <header class="header">
+    <nav class="navbar">
+        <!-- Brand Logo -->
+        <div class="nav-brand">
+            <a href="index.html" class="logo-link">
+                <i class="fas fa-train logo-icon"></i>
+                <span class="brand-name">Sudish<span class="highlight">Express</span></span>
+            </a>
+        </div>
+        
+        <!-- Mobile Menu Toggle -->
+        <button class="nav-toggle" aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- Navigation Menu -->
+        <div class="nav-menu">
+            <ul class="nav-links">
+                <li class="nav-item">
+                    <a href="home.html" class="nav-link">
+                        <i class="fas fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="search.html" class="nav-link">
+                        <i class="fas fa-search"></i>
+                        <span>Search Trains</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="about.html" class="nav-link">
+                        <i class="fas fa-info-circle"></i>
+                        <span>About Us</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link">
+                        <i class="fas fa-envelope"></i>
+                        <span>Contact</span>
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Auth Buttons -->
+            <div class="auth-buttons">
+                <a href="login.html" class="btn btn-login">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Login
+                </a>
+                <a href="signup.html" class="btn btn-signup">
+                    <i class="fas fa-user-plus"></i>
+                    Sign Up
+                </a>
+            </div>
+        </div>
+    </nav>
+</header>
+
+    <!-- Sign Up Section -->
+    <main class="signup-section">
+        <div class="container">
+            <div class="signup-container">
+                <div class="signup-header">
+                    <h1>Create Your Account</h1>
+                    <p>Join SudishExpress for faster bookings and exclusive offers</p>
+                </div>
+
+                <form id="signupForm" class="signup-form" novalidate>
+                    <div class="form-group">
+                        <label for="fullName">Full Name</label>
+                        <div class="input-group">
+                            <i class="fas fa-user"></i>
+                            <input type="text" id="fullName" name="fullName" required>
+                        </div>
+                        <span class="error-message" id="fullNameError"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <div class="input-group">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <span class="error-message" id="emailError"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <div class="input-group">
+                            <i class="fas fa-phone"></i>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        <span class="error-message" id="phoneError"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <div class="input-group">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="password" name="password" required>
+                            <i class="fas fa-eye-slash toggle-password"></i>
+                        </div>
+                        <span class="error-message" id="passwordError"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <div class="input-group">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="confirmPassword" name="confirmPassword" required>
+                        </div>
+                        <span class="error-message" id="confirmPasswordError"></span>
+                    </div>
+
+                    <div class="form-group terms">
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="terms" name="terms" required>
+                            <span class="checkmark"></span>
+                            I agree to the <a href="#">Terms & Conditions</a>
+                        </label>
+                        <span class="error-message" id="termsError"></span>
+                    </div>
+
+                    <button type="submit" class="btn btn-signup">
+                        <span>Create Account</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+
+                    <p class="login-link">
+                        Already have an account? <a href="login.html">Login here</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </main>
+
+   <!-- Footer -->
+ <footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>SudishExpress</h3>
+                <p>Your trusted partner for train travel</p>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/share/1YYYxNLDJT/?mibextid=wwXIfr"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/sudishkarki_10?igsh=MWNqYWgycHJqNW0xYQ=="><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="search.html">Search Trains</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>Payment Options</h4>
+                <ul>
+                    <li><a href="#">Credit Card</a></li>
+                    <li><a href="#">Debit Card</a></li>
+                    <li><a href="#">Net Banking</a></li>
+                    <li><a href="#">UPI</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-contact">
+                <h4>Contact Us</h4>
+                <p><i class="fas fa-phone"></i> +9779820305703</p>
+                <p><i class="fas fa-envelope"></i> sudishkarki360@gmail.com</p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 SudishExpress. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<script src="/js/main.js"></script>
+<script src="/js/signup.js"></script>
+</body>
+</html>

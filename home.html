@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SudishExpress - Modern Train Booking</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <!-- Brand Logo -->
+            <div class="nav-brand">
+                <a href="index.html" class="logo-link">
+                    <i class="fas fa-train logo-icon"></i>
+                    <span class="brand-name">Sudish<span class="highlight">Express</span></span>
+                </a>
+            </div>
+            
+            <!-- Mobile Menu Toggle -->
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+    
+            <!-- Navigation Menu -->
+            <div class="nav-menu">
+                <ul class="nav-links">
+                    <li class="nav-item">
+                        <a href="home.html" class="nav-link">
+                            <i class="fas fa-home"></i>
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="search.html" class="nav-link">
+                            <i class="fas fa-search"></i>
+                            <span>Search Trains</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="about.html" class="nav-link">
+                            <i class="fas fa-info-circle"></i>
+                            <span>About Us</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="contact.html" class="nav-link">
+                            <i class="fas fa-envelope"></i>
+                            <span>Contact</span>
+                        </a>
+                    </li>
+                </ul>
+    
+                <!-- Auth Buttons -->
+                <div class="auth-buttons">
+                    <a href="login.html" class="btn btn-login">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Login
+                    </a>
+                    <a href="signup.html" class="btn btn-signup">
+                        <i class="fas fa-user-plus"></i>
+                        Sign Up
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <!-- Video Background -->
+        <div class="hero-background">
+            <video autoplay muted loop id="heroVideo" class="hero-video">
+                <source src="/Videos/Video1.mp4" type="video/mp4">
+                <!-- Fallback background will be shown if video doesn't load -->
+            </video>
+            <div class="hero-overlay"></div>
+        </div>
+        
+        <div class="container">
+            <div class="hero-content">
+                <h1>Book Your Journey With Confidence</h1>
+                <p>Fast, reliable, and comfortable train travel across the country</p>
+                
+                <!-- Booking Form -->
+                <div class="booking-card">
+                    <form class="booking-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label><i class="fas fa-map-marker-alt"></i> From</label>
+                                <input type="text" placeholder="Departure Station">
+                            </div>
+                            <div class="form-group">
+                                <label><i class="fas fa-map-marker"></i> To</label>
+                                <input type="text" placeholder="Arrival Station">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label><i class="fas fa-calendar"></i> Date</label>
+                                <input type="date">
+                            </div>
+                            <div class="form-group">
+                                <label><i class="fas fa-users"></i> Passengers</label>
+                                <select>
+                                    <option>1 Passenger</option>
+                                    <option>2 Passengers</option>
+                                    <option>3 Passengers</option>
+                                    <option>4 Passengers</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-search">Search Trains</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2>Why Choose SudishExpress?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-clock"></i>
+                    <h3>Fast Booking</h3>
+                    <p>Book your tickets in minutes with our streamlined process</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Secure Payment</h3>
+                    <p>Multiple secure payment options for your convenience</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-tag"></i>
+                    <h3>Best Prices</h3>
+                    <p>Competitive prices with regular discounts and offers</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+      <!-- Footer -->
+ <footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>SudishExpress</h3>
+                <p>Your trusted partner for train travel</p>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/share/1YYYxNLDJT/?mibextid=wwXIfr"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/sudishkarki_10?igsh=MWNqYWgycHJqNW0xYQ=="><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="search.html">Search Trains</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>Payment Options</h4>
+                <ul>
+                    <li><a href="#">Credit Card</a></li>
+                    <li><a href="#">Debit Card</a></li>
+                    <li><a href="#">Net Banking</a></li>
+                    <li><a href="#">UPI</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-contact">
+                <h4>Contact Us</h4>
+                <p><i class="fas fa-phone"></i> +9779820305703</p>
+                <p><i class="fas fa-envelope"></i> sudishkarki360@gmail.com</p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 SudishExpress. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+    <script src="/js/main.js"></script>
+</body>
+</html>

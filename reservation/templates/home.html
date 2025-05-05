@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block title %}SudishExpress - Train Booking System{% endblock %}
+
+{% block content %}
+<div class="container-fluid p-0">
+    <!-- Hero Section -->
+    <section class="bg-primary text-white py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h1 class="display-4 fw-bold mb-4">Book Your Journey With Confidence</h1>
+                    <p class="lead mb-4">Fast, reliable, and comfortable train travel across the country</p>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card shadow">
+                        <div class="card-body p-4">
+                            <h3 class="card-title text-dark mb-4">Search Trains</h3>
+                            <form method="post" action="{% url 'search_trains' %}">
+                                {% csrf_token %}
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label for="from_station" class="form-label">From</label>
+                                        {{ form.from_station }}
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="to_station" class="form-label">To</label>
+                                        {{ form.to_station }}
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="date" class="form-label">Date</label>
+                                        {{ form.date }}
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="passengers" class="form-label">Passengers</label>
+                                        {{ form.passengers }}
+                                    </div>
+                                    <div class="col-12">
+                                        <button type="submit" class="btn btn-primary w-100 py-3">Search Trains</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Why Choose ExpressWay?</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center p-4">
+                            <div class="rounded-circle bg-primary text-white d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                                <i class="bi bi-ticket-perforated fs-4"></i>
+                            </div>
+                            <h4>Easy Booking</h4>
+                            <p class="text-muted">Book your train tickets in just a few clicks with our user-friendly interface.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center p-4">
+                            <div class="rounded-circle bg-primary text-white d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                                <i class="bi bi-shield-check fs-4"></i>
+                            </div>
+                            <h4>Secure Payment</h4>
+                            <p class="text-muted">Your transactions are protected with industry-standard security measures.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center p-4">
+                            <div class="rounded-circle bg-primary text-white d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                                <i class="bi bi-phone fs-4"></i>
+                            </div>
+                            <h4>Mobile Friendly</h4>
+                            <p class="text-muted">Access your bookings and tickets anytime, anywhere on any device.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}
